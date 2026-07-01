@@ -1,32 +1,29 @@
 cmake_minimum_required(VERSION 3.10)
-project(MySerialApp)
+project(MySerialApp LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-# 输出到 build/Release
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Release)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
-# CSerialPort options
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
 set(CSERIALPORT_ENABLE_NATIVE_SYNC ON CACHE BOOL "" FORCE)
 set(CSERIALPORT_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(CSERIALPORT_BUILD_BINDING_C OFF CACHE BOOL "" FORCE)
 set(CSERIALPORT_BUILD_TEST OFF CACHE BOOL "" FORCE)
 set(CSERIALPORT_BUILD_DOC OFF CACHE BOOL "" FORCE)
 
-# 添加子项目
 add_subdirectory(thirdparty/CSerialPort)
 
-# 主程序
 add_executable(MySerialApp main.cpp)
 
-# 明确添加头文件路径（PUBLIC）
 target_include_directories(MySerialApp PRIVATE
     ${CMAKE_SOURCE_DIR}/thirdparty/CSerialPort/include
 )
 
-# 链接库
 target_link_libraries(MySerialApp PRIVATE
     libcserialport
-    setupapi
 )

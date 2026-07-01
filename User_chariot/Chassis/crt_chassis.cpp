@@ -20,13 +20,13 @@ void Class_Omni_Chassis::Init(float __Velocity_X_Max, float __Velocity_Y_Max, fl
     Slope_Omega.Init(0.010f, 0.010f, Slope_First_REAL);
 
     // 底盘速度xPID, 输出摩擦力
-    PID_Velocity_X.Init(30.0f, 0.0f, 0.0f, 0.0f, 0.18f, 50.0f, 0.002f);
+    PID_Velocity_X.Init(120.0f, 0.0f, 0.0f, 0.0f, 0.18f, 50.0f, 0.002f);
 
     // 底盘速度yPID, 输出摩擦力
-    PID_Velocity_Y.Init(30.0f, 0.0f, 0.0f, 0.0f, 0.18f, 50.0f, 0.002f);
+    PID_Velocity_Y.Init(120.0f, 0.0f, 0.0f, 0.0f, 0.18f, 50.0f, 0.002f);
 
     // 底盘角速度PID, 输出扭矩
-    PID_Omega.Init(25.0f, 0.0f, 0.0f, 0.0f, 0.01f, 50.0f, 0.002f);
+    PID_Omega.Init(50.0f, 0.0f, 0.0f, 0.0f, 0.01f, 50.0f, 0.002f);
 
     // 轮向电机ID初始化
     Motor_Wheel[0].Init(&hfdcan1, Motor_DJI_ID_0x201);
